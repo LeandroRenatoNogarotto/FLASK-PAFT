@@ -1,0 +1,24 @@
+{
+  "contacts": [
+    {
+      "id": 1,
+      "name": "LELELE",
+      "phone": "555-555-5555"
+    },
+    {
+      "id": 2,
+      "name": "ANDRO",
+      "phone": "000-000-0000"
+    },
+    {
+      "id": 3,
+      "name": "LELELE",
+      "phone": "555-555-5555"
+    },
+    {
+      "id": 4,
+      "name": "OTAVIO",
+      "phone": "555-555-5555"
+    }
+  ]
+}
