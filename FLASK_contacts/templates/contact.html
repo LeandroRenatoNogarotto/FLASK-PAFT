@@ -58,9 +58,10 @@
                   <li>
                     <div class="input-group">
                       <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="number" placeholder="ID" aria- label="Search" min="0">
-                        <input class="form-control me-2" type="text" placeholder="name" aria- label="Search">
-                        <input class="form-control me-2" type="phone" placeholder="phone" aria- label="Search">
+                        <input class="form-control me-2" id="input_post_name" type="text" placeholder="name" aria-
+                          label="Search">
+                        <input class="form-control me-2" id="input_post_phone" type="phone" placeholder="phone" aria-
+                          label="Search">
                         <button class="btn btn-success">Submit</button>
                       </form>
                     </div>
@@ -76,9 +77,12 @@
                   <li>
                     <div class="input-group">
                       <form class="d-flex mt-3" role="search">
-                        <input class="form-control me-2" type="number" placeholder="ID" aria- label="Search" min="0">
-                        <input class="form-control me-2" type="text" placeholder="name" aria- label="Search">
-                        <input class="form-control me-2" type="phone" placeholder="phone" aria- label="Search">
+                        <input class="form-control me-2" id="input_put_id" type="number" placeholder="ID" aria-
+                          label="Search" min="0">
+                        <input class="form-control me-2" id="input_put_name" type="text" placeholder="name" aria-
+                          label="Search">
+                        <input class="form-control me-2" id="input_put_phone" type="phone" placeholder="phone" aria-
+                          label="Search">
                         <button class="btn btn-success" type="submit">Update</button>
                       </form>
                     </div>
@@ -143,7 +147,6 @@
       });
   }
 
-  loadContacts();
   function loadContact() {
     let id = document.querySelector('#input_get_id');
     let tBody = document.querySelector('.table__tbody');
@@ -176,7 +179,46 @@
       });
   }
 
+  function postContact() {
+    let inputName = document.getElementById('input_post_name');
+    let inputPhone = document.getElementById('input_post_phone');
+    let inputData = {
+      "name": inputName.value,
+      "phone": inputPhone.value
+    };
+    fetch(`http://127.0.0.1:5000/contacts`, {
+      method: "POST",
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(inputData)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        loadContacts();
+      });
+  }
 
+  function updateContact() {
+    let inputId = document.getElementById('input_put_id');
+    let inputName = document.getElementById('input_put_name');
+    let inputPhone = document.getElementById('input_put_phone');
+    let inputData = {
+      "name": inputName.value,
+      "phone": inputPhone.value
+    };
+    fetch(`http://127.0.0.1:5000/contacts/${inputId.value}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": 'application/json'
+      },
+      body: JSON.stringify(inputData)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        loadContacts();
+      });
+  }
 
 </script>
 
